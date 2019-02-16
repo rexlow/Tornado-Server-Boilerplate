@@ -14,25 +14,22 @@ class Main(BaseRequestHandler):
     def get(self):
         logger.info("[/] GET Request from: {}".format(self.request.remote_ip))
         result = yield self.handleGet()
-        self.write(result)
-        self.finish()
+        self.response(result)
 
     @coroutine
     def post(self):
         logger.info("[/] POST Request from: {}".format(self.request.remote_ip))
         result = yield self.handlePost()
-        self.write(result)
-        self.finish()
+        self.response(result)
 
     @run_on_executor
     def handleGet(self):
         if not self.request.arguments:
             return default_get_response
 
-        data = unloadRequestParams(self.request.arguments)
+        result = unloadRequestParams(self.request.arguments)
         
         # do something with the data
-        result = data
         return result
 
     @run_on_executor
