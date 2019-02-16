@@ -4,3 +4,7 @@ from .common import (
     formatRequestBody, 
     unloadRequestParams
 )
+from .Network import (
+    Success, 
+    Panic
+)
