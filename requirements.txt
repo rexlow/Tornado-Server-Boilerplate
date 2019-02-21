@@ -1,3 +1,4 @@
+loguru==0.2.4
 tornado==5.1.1
 tornadose==0.4.1
 urllib3==1.22
