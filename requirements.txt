@@ -1,4 +1,5 @@
 loguru==0.2.4
+simplejson==3.16.0
 tornado==5.1.1
 tornadose==0.4.1
 urllib3==1.22

@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
+import simplejson
 from loguru import logger
 from tornado.gen import coroutine
 from tornado.concurrent import run_on_executor
 from .BaseRequestHandler import BaseRequestHandler
 
-from utils import formatRequestBody, unloadRequestParams
+from utils import unloadRequestParams, Success
 from configs import default_get_response
 
 class Main(BaseRequestHandler):
@@ -28,14 +29,13 @@ class Main(BaseRequestHandler):
             return default_get_response
 
         result = unloadRequestParams(self.request.arguments)
-        
+
         # do something with the data
-        return result
+        return Success(200, result)
 
     @run_on_executor
     def handlePost(self):
-        reqBody = self.request.body.decode('utf8').split("&")
-        reqBody = formatRequestBody(reqBody)
+        data = simplejson.loads(self.request.body)
 
-        # do something
-        return reqBody
+        # do something with the data
+        return Success(200, data)
