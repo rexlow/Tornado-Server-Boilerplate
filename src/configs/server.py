@@ -4,7 +4,8 @@ server_configs = {
     "host": "0.0.0.0",
     "port": 8080,
     "max_workers": 1000,
-    "debug": False
+    "debug": False,
+    "wait_sec_shutdown": 3
 }
 
 default_get_response = '''
