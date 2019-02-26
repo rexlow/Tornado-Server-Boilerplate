@@ -11,14 +11,12 @@ from tornado.web import Application, url
 from tornado.httpserver import HTTPServer
 
 from configs import server_configs
-from routes import Main
+from routes import routes
 
 class Server(Application):
 
     def __init__(self, **kwargs):
-        kwargs["handlers"] = [
-            url(r'/', Main)
-        ]
+        kwargs["handlers"] = routes
         kwargs["debug"] = server_configs["debug"]
         super(Server, self).__init__(**kwargs)
 
